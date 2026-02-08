@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Appointments</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+ 
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <h2 class="logo">Hospital Management</h2>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="patients.html">Patients</a></li>
+      <li><a href="doctors.html">Doctors</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+
+    <!-- Book Appointment -->
+    <div class="card">
+      <h3>Book Appointment</h3>
+
+      <select id="patient">PatientID</select><br><br>
+      <select id="doctor">DoctorID</select><br><br>
+
+      <input type="datetime-local" id="time"><br><br>
+
+      <button onclick="bookAppointment()">Book</button>
+    </div>
+
+     <nav>
+      <ul class="pagination justify-content-center mt-3">
+        <li class="page-item">
+          <button class="page-link" onclick="prevPage()">Previous</button>
+        </li>
+        <li class="page-item">
+          <button class="page-link" onclick="nextPage()">Next</button>
+        </li>
+      </ul>
+    </nav>
+
+
+    <!-- Appointments List -->
+    <div class="card">
+      <h3>Appointments</h3>
+      <table class="table table-bordered table-striped table-hover">
+
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Time</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="appointmentsTable"></tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <script src="appointments.js"></script>
+</body>
+
+</html>
