@@ -28,10 +28,10 @@ function renderTable() {
   paginatedItems.forEach(d => {
     tbody.innerHTML += `
        <tr>
-          <td>${d.id}</td>
+          <td >${d.id}</td>
 
           <td>
-            <input type="text" id="name-${d.id}" value="${d.name}">
+            <input " type="text" id="name-${d.id}" value="${d.name}">
           </td>
            <td>
             <input type="text" id="specialization-${d.id}" value="${d.specialization}">
@@ -47,6 +47,7 @@ function renderTable() {
           <td>
             <button class="btn btn-sm btn-primary me-2" onclick="updateDoctor(${d.id})">Update</button>
             <button class="btn btn-sm btn-danger" onclick="deleteDoctor(${d.id})">Delete</button>
+            <button class="btn btn-sm btn-info"><a class="nav-link" href="doctor-appointments.html">Info</button>
           </td>
         </tr>
       `;
@@ -54,41 +55,6 @@ function renderTable() {
 }
 
 
-// function fetchDoctors() {
-//  fetch(API_URL)
-//   .then(res => res.json())
-//   .then(data => {
-//     const table = document.getElementById("doctorsTable");
-//     table.innerHTML = "";
-
-//     data.forEach(d => {
-//       table.innerHTML += `
-//         <tr>
-//           <td>${d.id}</td>
-
-//           <td>
-//             <input type="text" id="name-${d.id}" value="${d.name}">
-//           </td>
-//            <td>
-//             <input type="text" id="specialization-${d.id}" value="${d.specialization}">
-//           </td>
-//           <td>
-//             <input type="email" id="email-${d.id}" value="${d.email}">
-//           </td>
-
-//           <td>
-//             <input type="text" id="phone-${d.id}" value="${d.phone}">
-//           </td>
-
-//           <td>
-//             <button class="btn btn-sm btn-primary me-2" onclick="updateDoctor(${d.id})">Update</button>
-//             <button class="btn btn-sm btn-danger" onclick="deleteDoctor(${d.id})">Delete</button>
-//           </td>
-//         </tr>
-//       `;
-//     });
-//   });
-// }
 
 function addDoctor() {
   const name = document.getElementById("name").value;
@@ -112,6 +78,8 @@ function addDoctor() {
     document.getElementById("phone").value = "";
   });
 }
+
+
 
 function deleteDoctor(id) {
   if (!confirm("Are you sure you want to delete this doctor?")) return;

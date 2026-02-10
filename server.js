@@ -81,6 +81,28 @@ app.get("/appointments", (req, res) => {
 
 })
 
+app.get("/appointments/doctor/:id", (req, res) => {
+  const doctorId = req.params.id;
+
+  const sql = `
+    SELECT 
+      a.id,
+      p.name AS patient,
+      a.appointment_time,
+      a.status
+    FROM appointments a
+    JOIN patients p ON a.patient_id = p.id
+    WHERE a.doctor_id = ?
+    ORDER BY a.appointment_time
+  `;
+
+  db.query(sql, [doctorId], (err, result) => {
+    if (err) return res.status(500).json(err);
+    res.json(result);
+  });
+});
+
+
 /**====update==== */
 
 app.put("/appointments/:id", (req, res) => {
@@ -253,7 +275,31 @@ app.get("/doctors", (req, res) => {
     });
 });
 
+app.get("/doctors/:id", (req, res) => {
+  const { id } = req.params;
+
+  const sql = `
+    SELECT id, name, specialization, email, phone
+    FROM doctors
+    WHERE id = ?
+  `;
+
+  db.query(sql, [id], (err, result) => {
+    if (err) return res.status(500).json(err);
+
+    if (result.length === 0) {
+      return res.status(404).json({ message: "Doctor not found" });
+    }
+
+    res.json(result[0]);
+  });
+});
+
+
+
 //UPDATE DOCTOR
+
+
 
 app.put("/doctors/:id", (req, res) => {
     const { name, email, specialization, phone } = req.body;
